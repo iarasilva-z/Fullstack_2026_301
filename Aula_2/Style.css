@@ -1,0 +1,40 @@
+p{
+    font-size: 25pt;
+}
+
+.menu{
+    background-color: black;
+    color:  white;
+}
+
+.menu:hover
+    color:blue;
+}
+
+/*Alteração de cores do texto*/
+.azul       {color: blue;}
+.vermelho   {color: red;}
+.amarelo    {color: yellow;}
+.verde      {color: green;}
+
+.tam26      {font-size: 26;}
+.tam36      {font-size: 36;}
+.tam46      {font-size: 46;}
+.tam56      {font-size: 56;}
+
+#p_amarelo{
+    background-color: darkblue;
+}
+
+#p_amarelo:hover{
+    color:brown;
+    background-color: yellow;
+}
+
+div a{
+    text-decoration: none;
+}
+
+div a:visited{
+    color:coral;
+}
