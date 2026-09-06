@@ -1,0 +1,45 @@
+header {
+    background-color: bisque;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+header h1 {
+    color: darkred;
+}
+
+nav {
+    background-color: darkgreen;
+    padding: 15px;
+}
+
+nav a {
+    color: yellow;
+    margin: 20px;
+    text-decoration: none;
+}
+
+nav a:hover {
+    color: lightskyblue;
+}
+
+h2 {
+    color: indigo;
+}
+
+.livros {
+    background-color: lightgray;
+    padding: 20px;
+}
+
+.videos {
+    background-color: lightgray;
+    padding: 20px;
+    display: flex;
+    gap: 20px;
+}
+
+.sites a {
+    color: red;
+}

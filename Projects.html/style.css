@@ -1,0 +1,489 @@
+:root{
+    --cor-do-texto: #1a1c20;
+    --cor-do-link: #4a76ee;
+    --cor-do-fundo: #eeeff1;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--cor-do-fundo);
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+a{
+    color: var(--cor-do-link);
+    text-decoration: none;
+}
+
+
+/* =========================
+   BARRA DE NAVEGAÇÃO
+========================= */
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 50px;
+    height: 80px;
+}
+
+nav .left a {
+    color: var(--cor-do-texto);
+    font-size: 22px;
+    font-weight: 600;
+}
+
+nav .right a {
+    color: var(--cor-do-texto);
+    margin-left: 8px;
+}
+
+nav .right a:last-child {
+    color: var(--cor-do-fundo);
+    background-color: var(--cor-do-texto);
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+nav .right a span {
+    margin-left: 5px;
+}
+
+
+/* =========================
+   SEÇÃO 1: ABA PRINCIPAL
+========================= */
+
+.aba-principal{
+    display: flex;
+    justify-content: space-between;
+    padding: 0 50px;
+    margin: 50px 0;
+    margin-bottom: 100px;
+    align-items: center;
+    gap: 40px;
+}
+
+.text-links{
+    display: flex;
+    flex-direction: column;
+}
+
+.aba-principal .text{
+    flex: 5;
+    text-align: justify;
+}
+
+.aba-principal .text h2{
+    font-size: 45px;
+}
+
+.aba-principal .links{
+    margin-top: 25px;
+}
+
+.aba-principal .links a {
+    display: inline-block;
+    padding: 5px 10px;
+    border: 2px solid var(--cor-do-link);
+    border-radius: 5px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    transition: .1s;
+}
+
+.aba-principal .links a:hover {
+    color: var(--cor-do-texto);
+    border: 2px solid var(--cor-do-texto);
+}
+
+.aba-principal .headshot{
+    flex: 2;
+    display: flex;
+    justify-content: right;
+}
+
+
+/* FOTO PRINCIPAL REDONDA */
+
+.aba-principal .headshot img{
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 2px solid #ffffff;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.20);
+}
+
+
+/* =========================
+   SEÇÃO 2: HABILIDADES
+========================= */
+
+.habilidades-seção{
+    padding: 0 50px;
+    margin-bottom: 100px;
+}
+
+.habilidades-seção h2{
+    text-align: center;
+    font-size: 35px;
+}
+
+.habilidades-seção .text{
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.habilidades-seção .cells{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.habilidades-seção .cells .cell{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+
+    width: 200px;
+    padding: 10px 20px;
+
+    border: 1.5px solid lightgray;
+    border-radius: 5px;
+
+    margin: 10px;
+}
+
+
+/* Tamanho das imagens das habilidades */
+
+.habilidades-seção .cells .cell img{
+    width: 30px;
+    height: 30px;
+    object-fit: contain;
+    border-radius: 2px;
+}
+
+.habilidades-seção .cells .cell span{
+    font-size: 18px;
+}
+
+
+/* =========================
+   SEÇÃO 3: PROJETO
+========================= */
+
+.descrição-seção{
+    padding: 0 50px;
+    margin-bottom: 60px;
+}
+
+.descrição-seção h2{
+    text-align: center;
+    font-size: 35px;
+    margin-bottom: 10px;
+}
+
+
+/* IMAGEM E TEXTO LADO A LADO */
+
+.descrição-seção .group{
+    display: flex;
+    align-items: center;
+    gap: 50px;
+}
+
+
+/* Área da imagem e informações */
+
+.descrição-seção .group .detalhes-do-texto{
+    text-align: center;
+    flex: 2;
+}
+
+
+/* IMAGEM DO PROJETO REDONDA */
+
+.descrição-seção .group .detalhes-do-texto img{
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-bottom: 10px;
+
+    border: 2px solid #ffffff;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.20);
+}
+
+
+/* Texto abaixo da imagem */
+
+.descrição-seção .group .detalhes-do-texto p{
+    font-weight: 600;
+}
+
+
+/* Texto do projeto */
+
+.descrição-seção .group .text{
+    flex: 8;
+    text-align: justify;
+}
+
+
+/* =========================
+   SEÇÃO 4: TABELA DE PROJETOS
+========================= */
+
+.projetos-tabela{
+    padding: 0 50px;
+    margin-bottom: 100px;
+}
+
+
+/* "Projetos" como subtítulo */
+
+.projetos-tabela h2{
+    text-align: center;
+    font-size: 28px;
+    margin-bottom: 25px;
+}
+
+
+/* Tabela */
+
+.projetos-tabela table{
+    width: 100%;
+    border-collapse: collapse;
+}
+
+
+/* Cabeçalho da tabela */
+
+.projetos-tabela th{
+    border: 1.5px solid lightgray;
+    padding: 15px;
+    text-align: left;
+    font-size: 18px;
+}
+
+
+/* Conteúdo da tabela */
+
+.projetos-tabela td{
+    border: 1.5px solid lightgray;
+    padding: 15px;
+    text-align: left;
+}
+
+
+/* Link da tabela */
+
+.projetos-tabela td a{
+    color: var(--cor-do-link);
+}
+
+.projetos-tabela td a:hover{
+    color: var(--cor-do-texto);
+}
+
+
+/* =========================
+   SEÇÃO 5: CONTATO
+========================= */
+
+.tabela-seção{
+    padding: 0 50px;
+    margin-bottom: 100px;
+}
+
+.tabela-seção h2{
+    font-size: 35px;
+    margin-bottom: 30px;
+}
+
+
+/* CONTATO E FORMULÁRIO LADO A LADO */
+
+.tabela-seção .group {
+    display: flex;
+    gap: 50px;
+    align-items: flex-start;
+}
+
+
+/* Texto do contato */
+
+.tabela-seção .group .text{
+    flex: 3;
+    margin-top: 20px;
+    text-align: justify;
+}
+
+
+/* Formulário */
+
+.tabela-seção .group form{
+    flex: 3;
+    display: flex;
+    flex-direction: column;
+}
+
+
+/* Campos do formulário */
+
+.tabela-seção .group form input,
+.tabela-seção .group form textarea {
+    font-family: 'Poppins', sans-serif;
+
+    border: 2px solid var(--cor-do-link);
+
+    background-color: transparent;
+
+    padding: 10px;
+
+    margin-bottom: 15px;
+
+    outline: none;
+
+    resize: none;
+}
+
+
+/* Botão */
+
+.tabela-seção .group form button{
+    font-size: 16px;
+
+    font-family: 'Poppins', sans-serif;
+
+    color: white;
+
+    background-color: var(--cor-do-link);
+
+    border: none;
+
+    height: 50px;
+
+    cursor: pointer;
+
+    transition: .1s;
+}
+
+.tabela-seção .group form button:hover {
+    filter: brightness(.9);
+}
+
+
+/* =========================
+   RESPONSIVIDADE
+========================= */
+
+@media (max-width: 850px) {
+
+    .aba-principal .text h2{
+        font-size: 35px;
+    }
+}
+
+
+/* =========================
+   TELA MENOR
+========================= */
+
+@media (max-width: 740px) {
+
+    .aba-principal {
+        flex-direction: column-reverse;
+    }
+
+    .aba-principal .headshot img{
+        width: 250px;
+        height: 250px;
+    }
+
+
+    /* Projeto passa para coluna */
+
+    .descrição-seção .group{
+        flex-direction: column;
+    }
+
+    .descrição-seção .group .detalhes-do-texto img{
+        width: 200px;
+        height: 200px;
+    }
+
+
+    /* Contato passa para coluna */
+
+    .tabela-seção .group{
+        flex-direction: column;
+    }
+
+}
+
+
+/* =========================
+   TELA PEQUENA
+========================= */
+
+@media (max-width: 600px) {
+
+    nav {
+        padding: 0 20px;
+    }
+
+    nav .right a {
+        font-size: 22px;
+    }
+
+    nav .right a:last-child {
+        color: var(--cor-do-texto);
+        background-color: transparent;
+        padding: 0;
+    }
+
+    nav .right a span {
+        display: none;
+    }
+
+
+    .habilidades-seção{
+        padding: 0 20px;
+    }
+
+    .habilidades-seção .cells .cell span{
+        font-size: 16px;
+    }
+
+
+    .descrição-seção{
+        padding: 0 20px;
+    }
+
+
+    .projetos-tabela{
+        padding: 0 20px;
+    }
+
+
+    .tabela-seção {
+        padding: 0 20px;
+    }
+
+}
