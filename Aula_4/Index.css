@@ -5,32 +5,58 @@ header {
     justify-content: space-around;
 }
 
+header img {
+    height: 70px;
+}
+
 header h1 {
-    color: darkred;
+    color: darkgreen;
 }
 
 nav {
     background-color: darkgreen;
     padding: 15px;
+    text-align: center;
 }
 
 nav a {
     color: yellow;
     margin: 20px;
     text-decoration: none;
+    font-size: 10px;
 }
 
 nav a:hover {
     color: lightskyblue;
 }
 
+body {
+    background-color: lightgray;
+    margin: 0;
+    padding: 0;
+}
+
 h2 {
     color: indigo;
+    text-align: center;
+    font-size: 15px;
+}
+
+p {
+    color: indigo;
+    font-size: 10px;
 }
 
 .livros {
     background-color: lightgray;
     padding: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+}
+
+.livros img {
+    height: 150px;
 }
 
 .videos {
@@ -38,8 +64,59 @@ h2 {
     padding: 20px;
     display: flex;
     gap: 20px;
+    justify-content: center;
+}
+
+.videos iframe {
+    width: 300px;
+    height: 200px;
+}
+
+.sites {
+    background-color: yellow;
+    width: 300px;
+    margin: 20px auto;
+    padding: 10px;
+}
+
+.sites p {
+    color: black;
+    font-size: 9px;
 }
 
 .sites a {
     color: red;
+    font-size: 8px;
+}
+
+table {
+    border-collapse: collapse;
+    margin: 20px auto;
+    border: 2px dotted red;
+    font-size: 8px;
+}
+
+th,
+td {
+    border: 1px solid red;
+    padding: 5px;
+}
+
+footer {
+    background-color: bisque;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px 10px;
+}
+
+footer img {
+    width: 40px;
+    height: 40px;
+}
+
+footer p {
+    color: black;
+    font-size: 10px;
+    text-align: center;
 }
