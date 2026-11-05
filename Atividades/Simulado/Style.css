@@ -1,0 +1,260 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    color: #292929;
+    background-color: #f8f5ef;
+    font-size: 12px;
+}
+
+h1,
+h2,
+h3,
+p {
+    margin-top: 0;
+}
+
+nav {
+    height: 55px;
+    background-color: #ffffff;
+    border-bottom: 1px solid #e8e4dc;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10%;
+}
+
+nav h3 {
+    font-size: 12px;
+    margin: 0;
+}
+
+nav div {
+    display: flex;
+    gap: 25px;
+}
+
+nav a {
+    text-decoration: none;
+    color: #555555;
+    font-size: 10px;
+}
+
+header {
+    text-align: center;
+    padding: 35px 20px 45px;
+    background-color: #f8f5ef;
+}
+
+header img {
+    width: 70px;
+    height: 70px;
+    display: block;
+    margin: 0 auto 12px;
+}
+
+header h1 {
+    font-size: 24px;
+    margin-bottom: 5px;
+}
+
+header h2 {
+    font-size: 13px;
+    color: #e56b45;
+    margin-bottom: 15px;
+}
+
+header p {
+    display: block;
+    max-width: 430px;
+    margin: 0 auto 18px;
+    line-height: 1.5;
+    color: #666666;
+}
+
+button {
+    border: none;
+    border-radius: 20px;
+    padding: 9px 18px;
+    margin: 5px 3px;
+    font-size: 10px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+header button:first-of-type {
+    background-color: #39785b;
+    color: white;
+}
+
+header button:last-of-type {
+    background-color: transparent;
+    color: #39785b;
+    border: 1px solid #39785b;
+}
+
+.Sobre-Habilidades {
+    display: flex;
+    background-color: white;
+    padding: 55px 10%;
+}
+
+.Sobre {
+    width: 55%;
+}
+
+.Habilidades {
+    width: 45%;
+}
+
+.texto-sobre-mim h2,
+.Habilidades h2 {
+    font-size: 17px;
+    margin-bottom: 15px;
+}
+
+.texto-sobre-mim p {
+    max-width: 500px;
+    line-height: 1.6;
+    color: #666666;
+}
+
+.Habilidades p {
+    display: inline-block;
+    background-color: #eee9df;
+    color: #39785b;
+    font-weight: bold;
+    font-size: 9px;
+    padding: 7px 10px;
+    margin: 3px;
+    border-radius: 12px;
+}
+
+.Projetos {
+    background-color: #f8f5ef;
+    padding: 65px 10% 70px;
+    text-align: center;
+}
+
+.Projetos_Mariana {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.Projetos_Mariana > h2 {
+    font-size: 20px;
+    margin-bottom: 5px;
+}
+
+.Projetos_Mariana > p {
+    color: #666666;
+    margin-bottom: 30px;
+}
+
+.projetos-container {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.projeto {
+    width: 50%;
+    background-color: white;
+    border-radius: 7px;
+    padding-bottom: 15px;
+    text-align: left;
+    overflow: hidden;
+    border: 1px solid #ebe7df;
+}
+
+.projeto img {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+    display: block;
+}
+
+.projeto h3 {
+    font-size: 13px;
+    margin: 12px 15px 6px;
+}
+
+.projeto p {
+    color: #666666;
+    line-height: 1.5;
+    margin: 0 15px 8px;
+}
+
+.projeto button {
+    background-color: #eee9df;
+    color: #39785b;
+    font-size: 8px;
+    padding: 5px 9px;
+    margin: 3px 2px 0 15px;
+}
+
+footer {
+    background-color: #292929;
+    color: white;
+    text-align: center;
+    padding: 45px 20px 25px;
+}
+
+footer h2 {
+    font-size: 18px;
+    margin-bottom: 12px;
+}
+
+footer p {
+    color: #bdbdbd;
+    margin-bottom: 10px;
+    font-size: 10px;
+}
+
+footer small {
+    display: block;
+    color: #888888;
+    font-size: 8px;
+    margin-top: 25px;
+}
+
+@media (max-width: 700px) {
+
+    nav {
+        padding: 0 5%;
+    }
+
+    nav div {
+        gap: 12px;
+    }
+
+    header {
+        padding: 35px 20px;
+    }
+
+    .Sobre-Habilidades {
+        display: block;
+        padding: 40px 25px;
+    }
+
+    .Sobre-Habilidades {
+        width: 100%;
+    }
+
+    .Habilidades {
+        margin-top: 30px;
+    }
+
+    .projetos-container {
+        display: block;
+    }
+
+    .projeto {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+}

@@ -1,0 +1,41 @@
+.primeiro-paragrafo{
+    font-size: 15pt;
+    background-color: gainsboro;
+}
+
+.menu{
+    background-color: black;
+    color:  white;
+}
+
+.menu:hover{
+    color:blue;
+}
+
+/*Alteração de cores do texto*/
+.azul       {color: blue;}
+.vermelho   {color: red;}
+.amarelo    {color: yellow;}
+.verde      {color: green;}
+
+.tam26      {font-size: 26px;}
+.tam36      {font-size: 36px;}
+.tam46      {font-size: 46px;}
+.tam56      {font-size: 56px;}
+
+#p_amarelo{
+    background-color: darkblue;
+}
+
+#p_amarelo:hover{
+    color:brown;
+    background-color: yellow;
+}
+
+div a{
+    text-decoration: none;
+}
+
+div a:visited{
+    color:coral;
+}
