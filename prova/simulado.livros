@@ -1,0 +1,75 @@
+ProvaFullStack
+
+ server.js
+
+ package.json
+
+ node_modules
+
+ public
+
+ style.css
+
+
+ views
+
+ index.ejs
+
+ cadastrar.ejs
+
+ lista.ejs
+
+ resposta.ejs
+
+
+
+ Abra o Visual Studio Code.
+Passo 2 — Criar uma pasta
+1. Clique em File → Open Folder.
+2. Crie uma pasta chamada Simulado_Livros.
+3. Selecione essa pasta e clique em Selecionar Pasta.
+Por enquanto, não precisa criar nenhum arquivo.
+Passo 3 — Abrir o terminal
+No VS Code, clique em:
+
+Terminal → New Terminal
+
+O terminal deverá mostrar um caminho parecido com:
+PS C:\Users\SeuUsuario\Documents\Simulado_Livros>
+
+
+O importante é que o caminho termine com Simulado_Livros.
+
+Isso significa que os próximos comandos serão executados dentro da pasta correta.
+
+Não instale nada ainda. Vamos fazer isso na segunda etapa.
+
+ETAPA 2 — Preparar o Node.js e instalar as bibliotecas
+Agora vamos configurar o ambiente para conseguir utilizar JavaScript no servidor e MongoDB.
+Passo 1 — Verificar se o terminal está na pasta correta
+No terminal do VS Code, digite:
+pwd
+
+
+Esse comando mostra em qual pasta você está.
+
+O caminho deve terminar com:
+...\Simulado_Livros
+
+
+Se estiver na pasta geral das aulas, entre na pasta do simulado usando:
+cd Simulado_Livros
+
+Passo 2 — Verificar o Node.js
+Digite:
+node -v
+
+
+Se aparecer um número de versão, significa que o Node.js está instalado.
+
+Depois digite:
+npm -v
+
+
+Se também aparecer um número, o npm está funcionando.
+

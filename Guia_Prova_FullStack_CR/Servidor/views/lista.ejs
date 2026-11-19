@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Consultar cadastros | RegistroHub</title><link rel="stylesheet" href="/estilo.css"></head>
+<body>
+<header class="topbar"><div class="container nav"><a class="logo" href="/"><span class="logo-icon">R</span> Registro<span>Hub</span></a><nav><a class="nav-link" href="/">Novo cadastro</a><a class="nav-link active" href="/cadastros">Consultar registros</a></nav></div></header>
+<main class="container page"><div class="eyebrow">PAINEL DE GERENCIAMENTO</div><div class="page-heading"><div><h1>Registros cadastrados</h1><p>Visualize e pesquise os dados armazenados no MongoDB.</p></div><a class="btn btn-primary" href="/">+ Novo cadastro</a></div>
+<% if (sucesso) { %><div class="alert alert-success">✓ Cadastro realizado com sucesso!</div><% } %>
+<section class="panel"><div class="panel-header"><div><h2>Lista de cadastros</h2><p>Exibindo até 200 registros mais recentes.</p></div><span class="tag">READ · <%= itens.length %> registro(s)</span></div>
+<div class="toolbar"><form class="search" method="GET" action="/cadastros"><input type="search" name="busca" value="<%= busca %>" placeholder="Buscar por nome ou categoria"><button type="submit" class="btn btn-primary">Pesquisar</button></form><a class="btn btn-outline" href="/cadastros">Limpar busca</a></div>
+<div class="table-wrap"><table><thead><tr><th>Nome</th><th>Categoria</th><th>E-mail</th><th>Descrição</th><th>Data</th></tr></thead><tbody>
+<% if (itens.length === 0) { %><tr><td colspan="5" class="empty">Nenhum cadastro encontrado. <a href="/">Cadastre o primeiro registro</a>.</td></tr><% } %>
+<% itens.forEach(function(item) { %><tr><td class="name"><%= item.nome %></td><td><span class="pill"><%= item.categoria %></span></td><td><%= item.email %></td><td class="description"><%= item.descricao %></td><td class="date"><%= item.criadoEm ? new Date(item.criadoEm).toLocaleDateString('pt-BR') : '-' %></td></tr><% }); %>
+</tbody></table></div></section></main><footer class="footer">RegistroHub · Projeto acadêmico Full Stack · Node.js + MongoDB</footer></body></html>

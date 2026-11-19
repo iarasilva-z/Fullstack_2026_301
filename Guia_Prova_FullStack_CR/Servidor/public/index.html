@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Novo cadastro | RegistroHub</title>
+  <link rel="stylesheet" href="/estilo.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="container nav"><a class="logo" href="/"><span class="logo-icon">R</span> Registro<span>Hub</span></a>
+      <nav><a class="nav-link active" href="/">Novo cadastro</a><a class="nav-link" href="/cadastros">Consultar registros</a></nav>
+    </div>
+  </header>
+  <main class="container page">
+    <div class="eyebrow">PAINEL DE GERENCIAMENTO</div>
+    <div class="page-heading"><div><h1>Novo cadastro</h1><p>Preencha os dados para adicionar um registro ao banco de dados.</p></div><a href="/cadastros" class="btn btn-outline">Ver cadastros →</a></div>
+    <div class="layout">
+      <section class="panel"><div class="panel-header"><div><h2>Informações do cadastro</h2><p>Os campos marcados com * são obrigatórios.</p></div><span class="tag">CREATE</span></div>
+        <form action="/cadastrar" method="POST" class="form-content">
+          <div class="form-grid">
+            <div class="field"><label for="nome">Nome *</label><input type="text" id="nome" name="nome" maxlength="100" placeholder="Ex.: Ana Silva" required></div>
+            <div class="field"><label for="categoria">Categoria *</label><input type="text" id="categoria" name="categoria" maxlength="60" placeholder="Ex.: Aluno, Cliente, Produto" required></div>
+            <div class="field full"><label for="email">E-mail *</label><input type="email" id="email" name="email" maxlength="150" placeholder="exemplo@email.com" required></div>
+            <div class="field full"><label for="descricao">Descricãooooo *</label><textarea id="descricao" name="descricao" maxlength="1000" rows="5" placeholder="Descreva as informações adicionais..." required></textarea></div>
+          </div>
+          <div class="form-actions"><button class="btn btn-muted" type="reset">Limpar formulário</button><button class="btn btn-primary" type="submit">Salvar cadastro →</button></div>
+        </form>
+      </section>
+      <aside class="sidebar"><div class="side-icon">✦</div><h3>Organização simples</h3><p>Seus dados serão salvos no MongoDB e poderão ser consultados a qualquer momento.</p><div class="side-divider"></div><div class="feature"><span>01</span><div><strong>Preencha o formulário</strong><small>Informe os dados do registro.</small></div></div><div class="feature"><span>02</span><div><strong>Salve no banco</strong><small>O servidor processa o cadastro.</small></div></div><div class="feature"><span>03</span><div><strong>Consulte os registros</strong><small>Pesquise e visualize os dados.</small></div></div></aside>
+    </div>
+  </main><footer class="footer">RegistroHub · Projeto acadêmico Full Stack · Node.js + MongoDB</footer>
+</body></html>

@@ -1,0 +1,591 @@
+GUIA COMPLETO PARA A PROVA — DESENVOLVIMENTO WEB
+Node.js + Express + HTML + CSS + GET + POST + EJS + MongoDB Local
+
+Este é o passo a passo atualizado para você copiar e consultar durante a prova, começando pela criação da pasta no VS Code e terminando com o cadastro e a consulta de livros no MongoDB instalado no computador.
+
+Vou utilizar nosso Sistema de Cadastro de Livros como exemplo. Na prova, basta adaptar os nomes, campos e funcionalidades conforme o enunciado da professora.
+ETAPA 1 — Criar a pasta do projeto
+1. Abra o VS Code.
+2. Clique em File > Open Folder.
+3. Crie uma pasta chamada prova_web.
+4. Selecione a pasta.
+5. Abra Terminal > New Terminal.
+Confira se o terminal está dentro da pasta do projeto:
+PS C:\Users\...\Documents\prova_web>
+
+
+Todos os comandos a seguir devem ser executados nessa pasta.
+ETAPA 2 — Verificar Node.js e npm
+Execute:
+node -v
+
+
+Depois:
+npm -v
+
+
+Se aparecerem os números das versões, pode continuar.
+
+Se algum comando não for reconhecido, será necessário verificar a instalação do Node.js.
+ETAPA 3 — Inicializar o projeto
+No terminal, execute:
+npm init -y
+
+
+Esse comando cria o arquivo package.json.
+ETAPA 4 — Instalar as bibliotecas
+Execute:
+npm install express ejs mongodb
+
+
+Biblioteca	Função
+express	Criar o servidor e as rotas
+ejs	Trabalhar com páginas HTML dinâmicas
+mongodb	Conectar o Node.js ao banco de dados
+
+Importante: mesmo que o MongoDB já esteja instalado no computador da faculdade, você precisa instalar o driver mongodb no projeto, caso ele ainda não esteja presente.
+
+Esse comando não reinstala o MongoDB Community Server.
+ETAPA 5 — Criar a estrutura de arquivos
+No VS Code, crie as seguintes pastas e arquivos:
+prova_web
+│
+├── node_modules
+│
+├── public
+│   └── style.css
+│
+├── views
+│   ├── index.ejs
+│   ├── cadastrar.ejs
+│   └── livros.ejs
+│
+├── server.js
+├── package.json
+└── package-lock.json
+
+
+As pastas node_modules e os arquivos package.json e package-lock.json são gerados pelos comandos npm.
+
+Você precisa criar manualmente server.js, public, views e os arquivos dentro dessas pastas.
+ETAPA 6 — Criar o servidor Node.js
+Abra o arquivo server.js e coloque:
+
+const express = require("express");
+const path = require("path");
+
+const app = express();
+const PORTA = 80;
+
+app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
+
+app.set("view engine", "ejs");
+app.set("views", path.join(__dirname, "views"));
+
+app.use(express.static(path.join(__dirname, "public")));
+
+app.get("/", (req, res) => {
+    res.send("Servidor funcionando!");
+});
+
+app.listen(PORTA, () => {
+    console.log("Servidor funcionando na porta " + PORTA);
+});
+
+
+
+Para que serve cada comando?
+Código	Função
+require("express")	Importa o Express
+require("path")	Trabalha com caminhos de arquivos
+express()	Cria a aplicação
+express.urlencoded()	Recebe dados de formulários
+express.json()	Recebe dados JSON
+app.set("view engine", "ejs")	Configura o EJS
+express.static()	Disponibiliza CSS, imagens e outros arquivos
+app.get()	Cria uma rota GET
+app.listen()	Inicia o servidor
+
+ETAPA 7 — Executar e testar o servidor
+No terminal:
+node server.js
+
+
+Resultado esperado:
+Servidor funcionando na porta 80
+
+
+Abra o navegador:
+
+http://localhost:80/
+
+Deverá aparecer:
+
+Servidor funcionando!
+
+Se funcionar, continue.
+
+Para interromper o servidor, pressione Ctrl + C.
+ETAPA 8 — Criar a página inicial EJS
+Dentro da pasta views, abra index.ejs:
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Livros</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+    <h1>Sistema de Cadastro de Livros</h1>
+
+    <a href="/cadastrar">Cadastrar Livro</a>
+    <a href="/livros">Consultar Livros</a>
+
+</body>
+</html>
+
+
+
+Agora, no server.js, substitua a rota inicial:
+app.get("/", (req, res) => {
+    res.send("Servidor funcionando!");
+});
+
+
+Por:
+app.get("/", (req, res) => {
+    res.render("index");
+});
+
+
+Atenção
+- res.send() envia uma resposta.
+- res.sendFile() envia um arquivo HTML.
+- res.render() renderiza uma página EJS.
+Ao utilizar res.render("index"), o Express procura index.ejs na pasta views.
+ETAPA 9 — Criar o formulário de cadastro
+Dentro de views, abra cadastrar.ejs:
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastrar Livro</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+    <h1>Cadastro de Livros</h1>
+
+    <form action="/cadastrar" method="POST">
+
+        <label>Título:</label>
+        <input type="text" name="titulo" required>
+
+        <label>Autor:</label>
+        <input type="text" name="autor" required>
+
+        <label>Ano:</label>
+        <input type="number" name="ano" required>
+
+        <button type="submit">Cadastrar</button>
+
+    </form>
+
+    <a href="/">Voltar</a>
+
+</body>
+</html>
+
+
+
+No server.js, adicione a rota GET:
+app.get("/cadastrar", (req, res) => {
+    res.render("cadastrar");
+});
+
+
+Agora, ao acessar:
+
+http://localhost:80/cadastrar
+
+O formulário deverá aparecer.
+ETAPA 10 — Criar a rota POST
+No server.js, abaixo da rota GET de cadastro, adicione:
+
+app.post("/cadastrar", (req, res) => {
+    const titulo = req.body.titulo;
+    const autor = req.body.autor;
+    const ano = req.body.ano;
+
+    res.send("Livro cadastrado: " + titulo + " - " + autor + " - " + ano);
+});
+
+
+
+Reinicie o servidor e teste o formulário.
+
+Quando clicar em Cadastrar, deverá aparecer uma mensagem com os dados informados.
+Diferença entre GET e POST
+GET	POST
+Utilizado para solicitar páginas ou dados	Utilizado para enviar dados para processamento
+app.get()	app.post()
+Exemplo: abrir cadastro	Exemplo: enviar formulário
+
+Atenção: o atributo name do HTML precisa corresponder ao nome utilizado no req.body.
+
+Exemplo:
+<input type="text" name="titulo">
+
+
+const titulo = req.body.titulo;
+
+
+Até aqui, os dados ainda não estão salvos no banco.
+ETAPA 11 — Criar o CSS
+Dentro da pasta public, abra style.css:
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 30px;
+    background-color: #f5f5f5;
+}
+
+h1 {
+    color: #333;
+}
+
+a {
+    margin-right: 15px;
+}
+
+input {
+    display: block;
+    padding: 8px;
+    margin-bottom: 15px;
+}
+
+button {
+    padding: 10px;
+    cursor: pointer;
+}
+
+
+
+Como já configuramos:
+app.use(express.static(path.join(__dirname, "public")));
+
+
+O CSS poderá ser acessado pelas páginas com:
+<link rel="stylesheet" href="/style.css">
+
+
+Não utilize /public/style.css no href nesse exemplo.
+
+PARTE 2 — CONECTAR AO MONGODB LOCAL
+Agora vamos conectar o projeto ao MongoDB que provavelmente já estará instalado no computador da faculdade.
+ETAPA 12 — Verificar se o MongoDB está funcionando
+Antes de conectar, precisamos verificar se o serviço MongoDB está em execução.
+
+No Windows:
+1. Pressione Win + R.
+2. Digite services.msc.
+3. Pressione Enter.
+4. Procure o serviço MongoDB Server ou MongoDB.
+5. Verifique se o status está como Em execução.
+Se estiver parado e você tiver permissão, poderá iniciá-lo. Nos computadores da faculdade, talvez seja necessário solicitar ajuda ao professor ou responsável pelo laboratório.
+
+O endereço padrão do MongoDB local é:
+mongodb://127.0.0.1:27017
+
+
+Esse endereço só funcionará se o servidor MongoDB estiver acessível nessa porta e a configuração permitir a conexão.
+ETAPA 13 — Importar o MongoDB no server.js
+No início do server.js, junto das outras importações, adicione:
+const { MongoClient } = require("mongodb");
+
+
+Logo depois da definição da porta, adicione:
+const uri = "mongodb://127.0.0.1:27017";
+const client = new MongoClient(uri);
+
+let banco;
+
+
+O que significa?
+Código	Função
+MongoClient	Cliente que realiza a conexão
+127.0.0.1	O próprio computador
+27017	Porta padrão do MongoDB
+client	Objeto de conexão
+banco	Variável para acessar o banco
+
+ETAPA 14 — Criar a conexão e iniciar o servidor
+No final do server.js, remova o app.listen() antigo:
+app.listen(PORTA, () => {
+    console.log("Servidor funcionando na porta " + PORTA);
+});
+
+
+Substitua por:
+
+async function iniciarServidor() {
+    try {
+        await client.connect();
+
+        banco = client.db("biblioteca");
+
+        console.log("MongoDB conectado com sucesso!");
+
+        app.listen(PORTA, () => {
+            console.log("Servidor funcionando na porta " + PORTA);
+        });
+
+    } catch (erro) {
+        console.log("Erro ao conectar ao MongoDB:", erro);
+    }
+}
+
+iniciarServidor();
+
+
+
+Entendendo
+await client.connect() estabelece a conexão com o MongoDB.
+
+client.db("biblioteca") seleciona o banco chamado biblioteca.
+
+app.listen() inicia o servidor Express depois que a conexão for estabelecida.
+
+Importante: você deve ter apenas um app.listen() ativo no arquivo.
+ETAPA 15 — Testar a conexão com MongoDB
+No terminal:
+node server.js
+
+
+Se estiver tudo correto, deverá aparecer:
+MongoDB conectado com sucesso!
+Servidor funcionando na porta 80
+
+
+Isso significa que o Node.js conseguiu se conectar ao banco.
+
+Se aparecer um erro como:
+ECONNREFUSED 127.0.0.1:27017
+
+
+Verifique se o serviço MongoDB está iniciado e se está utilizando a porta correta.
+
+Se o banco exigir autenticação, será necessário utilizar a string de conexão apropriada, com as credenciais fornecidas.
+ETAPA 16 — Salvar os livros no MongoDB
+Agora vamos alterar a rota POST para salvar os dados no banco.
+
+No server.js, encontre a rota:
+app.post("/cadastrar", (req, res) => {
+    const titulo = req.body.titulo;
+    const autor = req.body.autor;
+    const ano = req.body.ano;
+
+    res.send("Livro cadastrado: " + titulo + " - " + autor + " - " + ano);
+});
+
+
+Substitua a rota inteira por:
+
+app.post("/cadastrar", async (req, res) => {
+    try {
+        const titulo = req.body.titulo;
+        const autor = req.body.autor;
+        const ano = Number(req.body.ano);
+
+        await banco.collection("livros").insertOne({
+            titulo: titulo,
+            autor: autor,
+            ano: ano
+        });
+
+        res.redirect("/livros");
+
+    } catch (erro) {
+        console.log(erro);
+        res.status(500).send("Erro ao cadastrar livro");
+    }
+});
+
+
+
+O que acontece agora?
+Quando o usuário preencher o formulário e clicar em Cadastrar:
+
+O formulário envia os dados ao Express, e o Express utiliza insertOne() para salvar o documento na coleção livros.
+ETAPA 17 — Criar a consulta dos livros
+No server.js, adicione a rota GET:
+
+app.get("/livros", async (req, res) => {
+    try {
+        const livros = await banco.collection("livros").find().toArray();
+
+        res.render("livros", { livros: livros });
+
+    } catch (erro) {
+        console.log(erro);
+        res.status(500).send("Erro ao consultar livros");
+    }
+});
+
+
+
+Entendendo
+find() busca os documentos da coleção.
+
+toArray() transforma os resultados em uma lista.
+
+res.render("livros", { livros: livros }) envia essa lista para a página EJS.
+ETAPA 18 — Criar a página de consulta
+Dentro da pasta views, abra livros.ejs:
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Livros Cadastrados</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+    <h1>Livros Cadastrados</h1>
+
+    <% livros.forEach(livro => { %>
+
+        <p>
+            <%= livro.titulo %> -
+            <%= livro.autor %> -
+            <%= livro.ano %>
+        </p>
+
+    <% }) %>
+
+    <a href="/">Voltar</a>
+
+</body>
+</html>
+
+
+
+Agora, quando acessar:
+
+http://localhost:80/livros
+
+O servidor consultará os livros no MongoDB e mostrará os resultados na página.
+Sintaxe EJS importante para a prova
+Código	Função
+<% ... %>	Executa JavaScript sem exibir o resultado
+<%= ... %>	Exibe um valor na página
+forEach()	Percorre os itens de uma lista
+
+ETAPA 19 — Verificar os dados diretamente no MongoDB
+Se o computador tiver o MongoDB Compass instalado:
+1. Abra o MongoDB Compass.
+2. Utilize a conexão mongodb://127.0.0.1:27017.
+3. Clique em Connect.
+4. Procure o banco biblioteca.
+5. Abra a coleção livros.
+Depois de cadastrar pelo menos um livro, você deverá encontrar um documento semelhante a:
+{
+    "_id": "...",
+    "titulo": "Dom Casmurro",
+    "autor": "Machado de Assis",
+    "ano": 1899
+}
+
+
+O campo _id é gerado automaticamente pelo MongoDB.
+
+Se o banco ou a coleção ainda não aparecerem, primeiro verifique se algum documento foi realmente inserido.
+
+ETAPA 20 — Testar o sistema completo
+Agora reinicie o servidor:
+node server.js
+
+
+Abra:
+
+http://localhost:80/
+
+Teste a sequência:
+1. Acesse a página inicial.
+2. Clique em Cadastrar Livro.
+3. Preencha título, autor e ano.
+4. Clique em Cadastrar.
+5. Verifique se o navegador foi redirecionado para /livros.
+6. Confira se o livro aparece na listagem.
+7. Se disponível, abra o MongoDB Compass e confirme se o documento foi salvo.
+Se tudo funcionar, você terá concluído um sistema básico de cadastro e consulta com persistência no MongoDB.
+
+ERROS MAIS COMUNS E COMO CORRIGIR
+Erro	Possível causa / solução
+MODULE_NOT_FOUND	Verifique o nome do arquivo, caminho e bibliotecas instaladas
+Cannot GET /cadastrar	Confira se existe app.get("/cadastrar")
+Cannot POST /cadastrar	Confira se existe app.post("/cadastrar")
+Failed to lookup view	Confira a pasta views e o nome do arquivo EJS
+CSS não carrega	Confira express.static() e o caminho /style.css
+req.body undefined	Confira express.urlencoded() e os atributos name
+EADDRINUSE	A porta já está ocupada por outro processo
+ECONNREFUSED 127.0.0.1:27017	MongoDB local não está acessível
+Authentication failed	Credenciais ou configurações de autenticação incorretas
+Livro não aparece	Verifique a inserção, o banco e a coleção utilizados
+
+
+CHECKLIST FINAL — ORDEM PARA SEGUIR NA PROVA
+Etapas concluídas
+
+0 de 16
+
+
+
+[ ] Criar a pasta e abrir no VS Code
+[ ] Verificar Node.js e npm
+[ ] Executar npm init -y
+[ ] Instalar express, ejs e mongodb
+[ ] Criar server.js
+[ ] Criar public e views
+[ ] Configurar Express, EJS e CSS
+[ ] Executar node server.js e testar localhost
+[ ] Criar a página inicial e as rotas GET
+[ ] Criar o formulário e a rota POST
+[ ] Verificar se o MongoDB local está funcionando
+[ ] Configurar MongoClient e conectar ao banco
+[ ] Implementar insertOne() no cadastro
+[ ] Implementar find().toArray() na consulta
+[ ] Criar a página EJS de listagem
+[ ] Testar cadastro, consulta e dados no banco
+Reiniciar checklist
+RESUMO DOS COMANDOS PARA DECORAR
+TERMINAL DO VS CODE
+node -v
+npm -v
+npm init -y
+npm install express ejs mongodb
+node server.js
+
+
+CONEXÃO MONGODB LOCAL
+const { MongoClient } = require("mongodb");
+
+const uri = "mongodb://127.0.0.1:27017";
+const client = new MongoClient(uri);
+
+await client.connect();
+const banco = client.db("biblioteca");
+
+
+O trecho com await deve estar dentro de uma função async, como mostramos na Etapa 14.
+Importante para sua prova: esse guia cobre o fluxo completo de criação, conexão, cadastro e consulta usando MongoDB local, mas não inclui edição e exclusão de livros. Se a professora exigir CRUD completo, também serão necessários updateOne() e deleteOne(). Além disso, o enunciado pode pedir uma estrutura diferente da utilizada neste exemplo.
+
+Minha recomendação é guardar este material e, quando retomarmos o simulado, praticar principalmente a conexão ao MongoDB e a passagem de dados entre o formulário, o servidor e o banco. Essas etapas dependem umas das outras e merecem atenção espec

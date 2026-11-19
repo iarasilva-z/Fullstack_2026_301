@@ -1,0 +1,33 @@
+GUIA DA PROVA FULL STACK — CREATE + READ
+
+1) Abra a pasta Servidor no VS Code (a que contém servidor.js).
+2) No terminal dessa pasta: npm install
+3) Inicie o serviço MongoDB local (porta 27017).
+4) Execute: node servidor.js
+5) No navegador, abra: http://localhost:3000
+
+ROTAS:
+GET /             -> formulário HTML
+POST /cadastrar   -> salva no MongoDB e redireciona
+GET /cadastros    -> consulta e pesquisa registros via EJS
+GET /estilo.css   -> arquivo CSS servido pelo Express
+
+PASTAS: public = HTML/CSS estáticos; views = páginas EJS.
+
+SE O CSS NÃO CARREGAR:
+- Abra pelo http://localhost:3000 (NÃO use file:/// e NÃO abra o HTML direto).
+- Confirme que estilo.css está dentro de Servidor/public.
+- Confirme app.use(express.static(path.join(__dirname, 'public'))).
+- Confirme link href="/estilo.css" em cada HTML/EJS.
+- Teste http://localhost:3000/estilo.css; deve mostrar o conteúdo do CSS.
+- Pressione Ctrl+F5 no navegador para atualizar sem cache.
+
+ADAPTAR PARA A PROVA:
+- Em public/index.html, altere labels, name e id dos inputs.
+- Em servidor.js, altere req.body.nome etc. e o objeto do insertOne.
+- Em views/lista.ejs, altere item.nome etc. e cabeçalhos da tabela.
+- Se remover e-mail do formulário, remova também a validação de e-mail no servidor.
+- Mantenha os nomes idênticos em name do HTML, req.body e campos salvos no banco.
+- A busca atual procura nos campos nome e categoria; adapte o filtro quando mudar os campos.
+
+OBSERVAÇÃO: O Google Fonts é opcional; sem internet o CSS continua funcionando com Arial.
